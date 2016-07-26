@@ -8,6 +8,7 @@ import time
 
 from threading import Thread
 from flask_cors import CORS, cross_origin
+from flask_compress import Compress
 
 from pogom import config
 from pogom.app import Pogom
@@ -67,7 +68,9 @@ if __name__ == '__main__':
     app = Pogom(__name__)
 
     if args.cors:
-        CORS(app);
+        CORS(app)
+
+    Compress(app)
 
     config['ROOT_PATH'] = app.root_path
     if args.gmaps_key is not None:
